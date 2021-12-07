@@ -14,7 +14,36 @@
       type="text/css"
       href="./assets/stylesheets/style.css"
     />
+    <script defer src="./app.js"></script>
     <title>Weather App</title>
   </head>
-  <body></body>
+  <body>
+    <header class="head">
+      <nav class="head__nav nav">
+        <a
+          href="https://www.iconfinder.com/justui"
+          title="Link to Designer"
+          target="_blank"
+        >
+          <img class="nav__link-img" src="./assets/images/weather_icon.png" />
+        </a>
+        <h1 class="nav__header">Weather</h1>
+        <button class="nav__btn">Get Weather Updates!</button>
+      </nav>
+    </header>
+    <main class="main">
+      <header class="main__head hero hidden">
+        <div class="hero__container">
+        <h2 class="hero__label hero__label--title"></h2>
+        <div class="hero__item hero__item--1">
+          <img class="hero__img" />
+          <p class="hero__label hero__label--desc"></p>
+        </div>
+        <div class="hero__item hero__item--2">
+          <abbr class="hero__label hero__label--temp" title="Temperature"></abbr>
+          <abbr class="hero__label hero__label--humidity" title="Humidity"></abbr>
+        </div>
+        </div>
+      </header>
+    </main>
 </html>
