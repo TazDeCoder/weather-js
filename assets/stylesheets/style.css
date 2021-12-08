@@ -187,3 +187,38 @@ iframe {
   text-align: center;
   cursor: pointer;
 }
+
+/* 
+ *
+ * Load
+ *
+ *
+ */
+
+.load {
+  width: 12rem;
+  height: 5rem;
+}
+.load__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22rem;
+  height: 8rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: #ff7300;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+}
+.load__label--title {
+  font-size: 1.9rem;
+}
+.load__bar {
+  width: 12rem;
+  height: 3rem;
+  padding: 1rem;
+}
+.load__label--desc {
+  font-weight: 400;
+}
