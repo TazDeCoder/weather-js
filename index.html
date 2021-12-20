@@ -27,30 +27,40 @@
         >
           <img class="nav__link-img" src="./assets/images/weather_icon.png" />
         </a>
-        <h1 class="nav__header">Weather</h1>
-        <button class="nav__btn">Get Weather Updates!</button>
+        <h1 class="nav__label nav__label--title">Weather</h1>
+        <button class="nav__btn nav__btn--update btn">
+          Get Weather Updates!
+        </button>
       </nav>
     </header>
     <main class="main">
-      <header class="main__head hero hidden">
-        <div class="hero__container">
-        <h2 class="hero__label hero__label--title"></h2>
-        <div class="hero__item hero__item--1">
-          <img class="hero__img" />
-          <p class="hero__label hero__label--desc"></p>
+      <div class="main__content content">
+        <div
+          class="content__container content__container--hero container hidden"
+        >
+          <h1 class="container__label container__label--title"></h1>
+          <div class="container__item container__item--0 item">
+            <img class="item__img" />
+            <h2 class="item__label item__label--desc"></h2>
+          </div>
+          <div class="container__item container__item--1 item">
+            <abbr
+              class="item__label item__label--temp"
+              title="Temperature"
+            ></abbr>
+            <abbr
+              class="item__label item__label--humidity"
+              title="Humidity"
+            ></abbr>
+          </div>
         </div>
-        <div class="hero__item hero__item--2">
-          <abbr class="hero__label hero__label--temp" title="Temperature"></abbr>
-          <abbr class="hero__label hero__label--humidity" title="Humidity"></abbr>
-        </div>
-        </div>
-      </header>
-    </main>
-    <div class="load hidden">
-      <div class="load__container">
-      <h2 class="load__label load__label--title">Loading...</h2>
-      <progress class="load__bar" value="1" max="100"></progress>
-      <p class="load__label load__label--desc"></p>
       </div>
+    </main>
+    <div class="modal">
+      <button class="modal__btn--close btn">&times;</button>
+      <label class="modal__label">API Key</label>
+      <input class="modal__input modal__input--key" type="text" />
     </div>
+    <div class="overlay"></div>
+  </body>
 </html>
