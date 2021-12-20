@@ -2,17 +2,14 @@
 
 ## Description
 
-Get Weather Updates Near You
+Get Quick Weather Updates Near You!
 
 **Features:**
 
-- **NEW:** Modern GUI
-- **NEW:** Intuitive Design
+- Modern GUI
+- Intuitive Design
 
 **TASK-LIST:**
-
-- [x] Modern GUI
-- [x] Intuitive Design
 
 **_None at the moment, but feel free to suggest any :)_**
 
