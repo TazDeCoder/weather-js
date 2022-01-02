@@ -1,5 +1,10 @@
 # Weather
 
+## Screenshots
+
+![screenshots-0](/screenshots/screenshots-0.png)
+![screenshots-2](/screenshots/screenshots-2.png)
+
 ## Description
 
 Get Quick Weather Updates Near You!
@@ -8,6 +13,7 @@ Get Quick Weather Updates Near You!
 
 - Modern GUI
 - Intuitive Design
+- Local Updates
 
 **TASK-LIST:**
 
