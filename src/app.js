@@ -1,5 +1,9 @@
 "use strict";
 
+import "core-js/stable";
+import "regenerator-runtime";
+import * as images from "./images/*.jpg";
+
 ////////////////////////////////////////////////
 ////// Selecting HTML Elements
 ///////////////////////////////////////////////
@@ -76,7 +80,7 @@ function renderWeather(data) {
   if (typeWeather === "haze" || typeWeather === "rain") themeWeather = "purple";
   if (typeWeather === "snow" || typeWeather === "storm") themeWeather = "blue";
   // Load background image
-  containerMain.style.backgroundImage = `url(/assets/images/${typeWeather}.jpg)`;
+  containerMain.style.backgroundImage = `url("${images[typeWeather]}")`;
   // Load theme background
   containerHero.classList.add(`container--theme--${themeWeather}`);
   // Load weather icon
