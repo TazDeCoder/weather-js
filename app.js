@@ -8,94 +8,89 @@
 const containerHead = document.querySelector(".head");
 const containerMain = document.querySelector(".main__content");
 const containerHero = document.querySelector(".content__container--hero");
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".overlay");
-// Buttons
-const btnUpdate = containerHead.querySelector(".nav__btn--update");
-const btnClose = modal.querySelector(".modal__btn--close");
-// Inputs
-const inputKey = modal.querySelector(".modal__input--key");
 // Labels
 const labelTitle = containerHero.querySelector(".container__label--title");
-const labelDesc = containerHero.querySelector(".item__label--desc");
-const labelTemp = containerHero.querySelector(".item__label--temp");
-const labelHumidity = containerHero.querySelector(".item__label--humidity");
+const labelTemp = containerHero.querySelector(".item__label--unit--temp");
+const labelSpeed = containerHero.querySelector(".item__label--unit--speed");
 // Images
 const imgIcon = containerHero.querySelector(".item__img");
+// Buttons
+const btnUpdate = containerHead.querySelector(".nav__btn--update");
 
-////////////////////////////////////////////////
-////// App Architecture
-///////////////////////////////////////////////
+// Helper function
+function getPosition() {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
 
-class App {
-  #key;
-
-  constructor() {
-    // Add event handlers
-    btnUpdate.addEventListener("click", this._retrieveWeatherData.bind(this));
-    btnClose.addEventListener("click", this._receiveKey.bind(this));
-  }
-
-  _receiveKey() {
-    this.#key = inputKey?.value;
-    if (!this.#key)
-      return alert(
-        "You must enter an API key in order to use this app. Please go to the README file of this repo to find out how"
-      );
-    if (!(this.#key.length === 32)) {
-      inputKey.value = "";
-      return alert("This key might be invalid. Please try again :)");
-    }
-    modal.classList.add("hidden");
-    overlay.classList.add("hidden");
-  }
-
-  _getPosition() {
-    return new Promise(function (resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-  }
-
-  async _retrieveWeatherData() {
-    try {
-      if (!this.#key) return;
-      containerHero.classList.add("hidden");
-      const pos = await this._getPosition();
-      const { latitude: lat, longitude: lon } = pos.coords;
-      const geoRes = await fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
-      );
-      if (!geoRes.ok) throw new Error("Problem with geocoding");
-      const geoData = await geoRes.json();
-      const weatherRes = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${
-          geoData.city
-        }&units=metric&appid=${this.#key}`
-      );
-      if (!weatherRes.ok) throw new Error("Failed to retrieve weather data");
-      const weatherData = await weatherRes.json();
-      this._renderWeather(weatherData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
-
-  _renderWeather(data) {
-    const { temp, humidity } = data.main;
-    const [weather] = data.weather;
-    const { main: title, description: desc } = weather;
-    const imgName = title.toLowerCase();
-    containerMain.style.backgroundImage = `url(/assets/images/${imgName}.jpg)`;
-    const imgPath = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
-    imgIcon.src = imgPath;
-    imgIcon.addEventListener("load", function () {
-      containerHero.classList.remove("hidden");
-      labelTitle.textContent = title;
-      labelTemp.textContent = `${temp}°`;
-      labelHumidity.textContent = `${humidity}%`;
-      labelDesc.textContent = desc;
-    });
+async function updateWeather() {
+  try {
+    containerHero.classList.add("hidden");
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lon } = pos.coords;
+    const weatherRes = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+    );
+    if (!weatherRes.ok) throw new Error("Failed to retrieve weather data");
+    const weatherData = await weatherRes.json();
+    renderWeather(weatherData);
+    containerHero.classList.remove("hidden");
+  } catch (err) {
+    console.error(err.message);
   }
 }
 
-const app = new App();
+function renderWeather(data) {
+  let typeWeather, iconWeather, themeWeather;
+  const {
+    temperature: temp,
+    weathercode: code,
+    windspeed: speed,
+  } = data.current_weather;
+  // Set weather type name
+  if (code >= 0 && code < 44) typeWeather = "clear";
+  if (code >= 44 && code < 61) typeWeather = "haze";
+  if (code >= 61 && code < 71) typeWeather = "rain";
+  if (code >= 71 && code < 95) typeWeather = "snow";
+  if (code >= 95 && code < 99) typeWeather = "storm";
+  // Set weather icon name
+  switch (typeWeather) {
+    case "clear":
+      iconWeather = "01d";
+      break;
+    case "haze":
+      iconWeather = "04d";
+      break;
+    case "rain":
+      iconWeather = "10d";
+      break;
+    case "snow":
+      iconWeather = "13d";
+      break;
+    case "storm":
+      iconWeather = "11d";
+      break;
+  }
+  if (typeWeather === "clear") themeWeather = "orange";
+  if (typeWeather === "haze" || typeWeather === "rain") themeWeather = "purple";
+  if (typeWeather === "snow" || typeWeather === "storm") themeWeather = "blue";
+  // Load background image
+  containerMain.style.backgroundImage = `url(/assets/images/${typeWeather}.jpg)`;
+  // Load theme background
+  containerHero.classList.add(`container--theme--${themeWeather}`);
+  // Load weather icon
+  const imgPath = `https://openweathermap.org/img/wn/${iconWeather}@2x.png`;
+  imgIcon.src = imgPath;
+  imgIcon.addEventListener("load", function () {
+    labelTitle.textContent = typeWeather;
+    labelTemp.textContent = `${temp}°C`;
+    labelSpeed.textContent = `${speed}km/h`;
+  });
+}
+
+function init() {
+  btnUpdate.addEventListener("click", updateWeather);
+}
+
+init();
