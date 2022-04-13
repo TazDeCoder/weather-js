@@ -1,4 +1,4 @@
-# Weather
+# Weather JS
 
 ## Screenshots
 
@@ -7,17 +7,19 @@
 
 ## Description
 
-Get Quick Weather Updates Near You!
+A JavaScript application based on the Odin Project exercise - **'Weather App'**
 
 **Features:**
 
-- Modern GUI
-- Intuitive Design
-- Local Updates
+- Modern User Interface
+- Simple Design
+- Local Forecast Updates
+- Background Images
 
-**TASK-LIST:**
+## What I've Learnt
 
-**_None at the moment, but feel free to suggest any :)_**
++ Working with APIs
++ Error handling
 
 ## Installation
 
