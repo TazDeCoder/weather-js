@@ -2,24 +2,24 @@
 
 import "core-js/stable";
 import "regenerator-runtime";
-import * as images from "./images/*.jpg";
+
+import * as images from "../public/images/assets/*.jpg";
 
 ////////////////////////////////////////////////
 ////// Selecting HTML Elements
 ///////////////////////////////////////////////
 
 // Parents
-const containerHead = document.querySelector(".head");
-const containerMain = document.querySelector(".main__content");
-const containerHero = document.querySelector(".content__container--hero");
+const main = document.querySelector(".main");
+const boxHero = document.querySelector(".box--hero");
 // Labels
-const labelTitle = containerHero.querySelector(".container__label--title");
-const labelTemp = containerHero.querySelector(".item__label--unit--temp");
-const labelSpeed = containerHero.querySelector(".item__label--unit--speed");
+const labelTitle = document.querySelector(".box__label--title");
+const labelTemp = document.querySelector(".box__item-label--unit--temp");
+const labelSpeed = document.querySelector(".box__item-label--unit--speed");
 // Images
-const imgIcon = containerHero.querySelector(".item__img");
+const imgIcon = document.querySelector(".box__item-img");
 // Buttons
-const btnUpdate = containerHead.querySelector(".nav__btn--update");
+const btnUpdate = document.querySelector(".head__item-btn--update");
 
 // Helper function
 function getPosition() {
@@ -30,7 +30,7 @@ function getPosition() {
 
 async function updateWeather() {
   try {
-    containerHero.classList.add("hidden");
+    boxHero.classList.add("hidden");
     const pos = await getPosition();
     const { latitude: lat, longitude: lon } = pos.coords;
     const weatherRes = await fetch(
@@ -39,7 +39,7 @@ async function updateWeather() {
     if (!weatherRes.ok) throw new Error("Failed to retrieve weather data");
     const weatherData = await weatherRes.json();
     renderWeather(weatherData);
-    containerHero.classList.remove("hidden");
+    boxHero.classList.remove("hidden");
   } catch (err) {
     console.error(err.message);
   }
@@ -80,9 +80,9 @@ function renderWeather(data) {
   if (typeWeather === "haze" || typeWeather === "rain") themeWeather = "purple";
   if (typeWeather === "snow" || typeWeather === "storm") themeWeather = "blue";
   // Load background image
-  containerMain.style.backgroundImage = `url("${images[typeWeather]}")`;
+  main.style.backgroundImage = `url("${images[typeWeather]}")`;
   // Load theme background
-  containerHero.classList.add(`container--theme--${themeWeather}`);
+  boxHero.classList.add(`box--theme--${themeWeather}`);
   // Load weather icon
   const imgPath = `https://openweathermap.org/img/wn/${iconWeather}@2x.png`;
   imgIcon.src = imgPath;

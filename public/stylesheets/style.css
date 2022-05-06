@@ -5,16 +5,12 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
 html {
+  font-family: "Lato", sans-serif;
   font-size: 16px;
 }
 body {
-  font-family: "Lato", sans-serif;
+  min-height: 100vh;
   background-color: #fff;
 }
 nav,
@@ -30,18 +26,19 @@ iframe {
    max-width: 100%;
    height: auto;
 }
+/* CSS variables */
 :root {
-  /* Primary Colors */
+  /* Primary colors */
   --color-head: #2e339d;
   --color-head-grad: linear-gradient(315deg, #2e339d 0%, #6ab0de 100%);
-  /* Secondary Colors */
+  /* Secondary colors */
   --color-secondary-btn: #4ea1d8;
   --color-secondary-btn-hover: #3e81ad;
   --color-purple: #aeb1e8;
   --color-darkpurple: #9498e0;
   --color-blue: #67e5a8;
   --color-darkblue: #1fb66d;
-  /* Tertiary Colors */
+  /* Tertiary colors */
   --color-orange: #ffcf92;
   --color-darkorange: #d67800;
 }
@@ -55,32 +52,27 @@ iframe {
 
 /* General elements */
 
-/* Buttons */
+/* Button */
 .btn {
   cursor: pointer;
   border: 2px solid black;
   border-radius: 5px;
 }
-/* Nav */
-.nav {
-  display: flex;
-  align-items: center;
-}
-/* Container */
-.container--theme--orange {
+/* box */
+.box--theme--orange {
   background-color: var(--color-orange);
   border: 3px solid var(--color-darkorange);
 }
-.container--theme--purple {
+.box--theme--purple {
   background-color: var(--color-purple);
   border: 3px solid var(--color-darkpurple);
 }
-.container--theme--blue {
+.box--theme--blue {
   background-color: var(--color-blue);
   border: 3px solid var(--color-darkblue);
 }
 
-/* Class Modifiers */
+/* Class modifiers */
 
 .hidden {
   visibility: hidden;
@@ -95,6 +87,9 @@ iframe {
  */
 
 .head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   z-index: 10;
   width: 100%;
@@ -102,39 +97,48 @@ iframe {
   background-color: var(--color-head);
   background: var(--color-head-grad);
 }
-.head__nav {
-  justify-content: center;
+.head__item {
+  flex-grow: 1;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
-
-/* 
- *
- * Head
- *
- * * * Nav
- *
- *
- */
-
-.head .nav__link-img {
+.head__item-label--title {
+  margin: 1.5rem 2rem;
+  font-size: 3.1rem;
+  font-weight: 300;
+  color: white;
+}
+.head__item-link > img {
   width: 5rem;
   height: 5rem;
   filter: drop-shadow(10px 5px 12px var(--color-darkpurple));
 }
-.head .nav__label--title {
-  font-size: 3.1rem;
-  font-weight: 300;
-  margin: 1.5rem 2rem;
-}
-.head .nav__btn {
-  width: 5rem;
-  padding: 0.5rem;
+.head__item-btn--update {
+  padding: 1rem;
   font-weight: 700;
   color: white;
   background-color: var(--color-secondary-btn);
 }
-.head .nav__btn:hover {
+.head__item-btn:hover {
   background-color: var(--color-secondary-btn-hover);
+}
+.head__nav {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0.5rem;
+}
+.head__nav-item {
+  display: inline-block;
+  margin: 0 0.5rem;
+  padding: 10px 0;
+}
+.head__nav-item > a {
+  text-decoration: none;
+  color: white;
+  font-size: 3rem;
 }
 
 /* 
@@ -145,21 +149,16 @@ iframe {
  */
 
 .main {
-  width: 100%;
-  height: 100%;
-}
-.main__content {
   position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-position: center center;
   background-size: cover;
   transition: background-image 700ms;
 }
-/* Content */
-.main .content__container--hero {
+.main .box--hero {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -175,30 +174,28 @@ iframe {
  *
  * Main
  *
- * * * Content
- *
- * * * * * Container
+ * * * Box
  *
  *
  */
 
-.main .container__label--title {
+.main .box__label--title {
   font-size: 2.1rem;
   font-weight: 400;
   text-align: center;
   text-transform: capitalize;
 }
-.main .container__item {
+.main .box__item {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 70%;
   padding: 1rem;
 }
-.main .container__item--0 {
+.main .box__item--0 {
   width: 100%;
 }
-.main .container__item--1 {
+.main .box__item--1 {
   display: flex;
   width: 100%;
 }
@@ -207,23 +204,21 @@ iframe {
  *
  * Main
  *
- * * * Content
+ * * * Box
  *
- * * * * * Container
- *
- * * * * * * * Item
+ * * * * * Item
  * 
  *
  */
 
-.main .item__img {
+.main .box__item-img {
   display: inline-block;
   height: 100%;
   margin: 1rem;
   background-color: white;
   border-radius: 50%;
 }
-.main .item__label--unit {
+.main .box__item-label--unit {
   margin: 2px 0;
   font-size: 1.5rem;
   font-weight: 700;

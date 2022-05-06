@@ -4,55 +4,97 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./src/stylesheets/reset.css" />
-    <link rel="stylesheet" type="text/css" href="./src/stylesheets/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+      type="text/css"
+      href="./public/stylesheets/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./public/stylesheets/style.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./public/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./public/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./public/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./public/favicon/site.webmanifest" />
+    <link
+      href="./node_modules/@fortawesome/fontawesome-free/css/brands.css"
       rel="stylesheet"
     />
     <script defer type="module" src="./src/app.js"></script>
-    <title>Weather App</title>
+    <title>Weather JS</title>
   </head>
   <body>
     <header class="head">
-      <nav class="head__nav nav">
+      <div class="head__item">
+        <h1 class="head__item-label head__item-label--title">Weather JS</h1>
         <a
+          class="head__item-link"
           href="https://www.iconfinder.com/justui"
           title="Link to Designer"
           target="_blank"
+          rel="noopener"
         >
-          <img class="nav__link-img" src="./src/images/weather_icon.png" />
+          <img src="./public/images/assets/weather_icon.png" />
         </a>
-        <h1 class="nav__label nav__label--title">Weather</h1>
-        <button class="nav__btn nav__btn--update btn">
+      </div>
+
+      <div class="head__item">
+        <button class="btn head__item-btn head__item-btn--update">
           Get Weather Updates!
         </button>
+      </div>
+
+      <nav class="head__nav">
+        <div class="head__nav-item">
+          <a
+            href="https://github.com/tarwat-uddin/weather-js"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fa-brands fa-github" />
+          </a>
+        </div>
+        <div class="head__nav-item">
+          <a href="https://dev.to/tarwatuddin" target="_blank" rel="noopener">
+            <i class="fa-brands fa-dev" />
+          </a>
+        </div>
       </nav>
     </header>
 
     <main class="main">
-      <div class="main__content content">
-        <div
-          class="content__container content__container--hero container hidden"
-        >
-          <h1
-            class="container__label container__label--title container__label"
-          ></h1>
+      <div class="box--hero hidden">
+        <h1 class="box__label box__label--title"></h1>
 
-          <div class="container__item container__item--0 item">
-            <img class="item__img" />
-            <p
-              class="item__label item__label--unit item__label--unit--temp"
-              title="Temperature"
-            ></p>
-          </div>
+        <div class="box__item box__item--0">
+          <img class="box__item-img" />
+          <p
+            class="box__item-label box__item-label--unit box__item-label--unit--temp"
+            title="Temperature"
+          ></p>
+        </div>
 
-          <div class="container__item container__item--1 item">
-            <p
-              class="item__label item__label--unit item__label--unit--speed"
-              title="Windspeed"
-            ></p>
-          </div>
+        <div class="box__item box__item--1">
+          <p
+            class="box__item-label box__item-label--unit box__item-label--unit--speed"
+            title="Windspeed"
+          ></p>
         </div>
       </div>
     </main>
