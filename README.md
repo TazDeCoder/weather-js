@@ -2,8 +2,8 @@
 
 ## Screenshots
 
-![screenshots-0](/screenshots/screenshots-0.png)
-![screenshots-2](/screenshots/screenshots-2.png)
+<img src="./public/images/screenshots/screenshots-1.png" alt="desktop-screenshot" width="65%"></img>
+<img src="./public/images/screenshots/screenshots-2.png" alt="mobile-screenshot" width="30%"></img>
 
 ## Description
 
@@ -18,8 +18,8 @@ A JavaScript application based on the Odin Project exercise - **'Weather App'**
 
 ## What I've Learnt
 
-+ Working with APIs
-+ Error handling
+- Working with APIs
+- Error handling
 
 ## Installation
 
