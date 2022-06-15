@@ -36,7 +36,7 @@
       href="./node_modules/@fortawesome/fontawesome-free/css/brands.css"
       rel="stylesheet"
     />
-    <script defer type="module" src="./src/app.js"></script>
+    <script defer type="module" src="./src/app.ts"></script>
     <title>Weather JS</title>
   </head>
   <body>
@@ -80,21 +80,21 @@
 
     <main class="main">
       <div class="box--hero hidden">
-        <h1 class="box__label box__label--title"></h1>
+        <label class="box__label box__label--title"></label>
 
         <div class="box__item box__item--0">
           <img class="box__item-img" />
-          <p
+          <label
             class="box__item-label box__item-label--unit box__item-label--unit--temp"
             title="Temperature"
-          ></p>
+          ></label>
         </div>
 
         <div class="box__item box__item--1">
-          <p
+          <label
             class="box__item-label box__item-label--unit box__item-label--unit--speed"
             title="Windspeed"
-          ></p>
+          ></label>
         </div>
       </div>
     </main>
